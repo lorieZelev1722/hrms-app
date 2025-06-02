@@ -1,13 +1,17 @@
 import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import tailwindcss from '@tailwindcss/vite';
+import vue from '@vitejs/plugin-vue';
+import path from 'path';
 
 export default defineConfig({
-    plugins: [
-        laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
-            refresh: true,
-        }),
-        tailwindcss(),
-    ],
+  plugins: [vue()],
+  build: {
+    manifest: true,   // Generate manifest.json
+    outDir: path.resolve(__dirname, 'public/build'),  // Output assets to public/build directory
+    assetsDir: 'assets', // Optional: Store static assets here
+  },
+  server: {
+    proxy: {
+      '/app': 'http://localhost',  // Optional: Proxy requests to backend during development
+    }
+  }
 });

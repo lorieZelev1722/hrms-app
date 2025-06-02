@@ -1,0 +1,134 @@
+.dashboard-container-wrapper{
+    width:100%;
+    height:100%;
+}
+
+.dashboard-container-layout{
+    width:100%;
+    height:100%;
+    display:grid;
+    gap: 10px;
+    padding: 10px;
+}
+
+.dashboard-card-layout{
+    width:100%;
+    height:100%;
+    display:grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.dashboard-card{
+    width:100%;
+    height: 100%;
+    -webkit-box-shadow: -1px 9px 17px -9px rgba(128,128,128,0.9);
+    -moz-box-shadow: -1px 9px 17px -9px rgba(128,128,128,0.9);
+    box-shadow: -1px 9px 17px -9px rgba(128,128,128,0.9);
+    border: 2px solid #fff;
+    border-radius: 5px;
+    opacity: .8;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    gap: 15px;
+    position: relative;
+}
+
+.view-link-card{
+    position: absolute;
+    top: 10%;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: .8;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-link-card svg{
+    height: 15px;
+    fill: #808080;
+}
+
+.dashboard-card-icon {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-card-icon svg{
+    height: 35px;
+    fill: #fff;
+}
+
+.dashboard-card-label{
+    width:100%;
+    display:flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.dashboard-card-label h3{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.dashboard-card-label small{
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #DCDCDC!important;
+    opacity: .8;
+}
+
+.success-card{
+    background-color: #008000;
+    color: #fff;
+}
+
+.primary-card{
+    background-color: #1E90FF;
+    color: #fff;
+}
+
+.secondary-card{
+    background: #696969;
+    color: #fff;
+}
+
+.danger-card{
+    background-color: #DC143C;
+    color: #fff;
+}
+
+
+
+/* Mobile */
+@media (max-width: 767px) {
+    .dashboard-container-layout{
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+/* iPad / Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .dashboard-container-layout{
+        grid-template-rows: 150px 1fr;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .dashboard-container-layout{
+        grid-template-rows: 150px 1fr;
+    }
+
+    .dashboard-card-layout{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
