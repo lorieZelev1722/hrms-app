@@ -20,8 +20,10 @@ return new class extends Migration
             $table->boolean('status')->default(1);
             $table->integer('supervisor_id');
             $table->integer('team_id');
-            $table->boolean('is_active')->default(1);
-            $table->boolean('is_deleted')->default(0);
+            $table->integer('addedbyID');
+            $table->integer('updatedbyID');
+            $table->boolean('isCurrent')->default(1);
+            $table->boolean('isDeleted')->default(0);
         });
     }
 
