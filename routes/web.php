@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HelperController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Middleware\CheckUserPermission;
@@ -46,6 +47,7 @@ Route::get('/dashboard_view',function(Request $request){
  });
 
  //helper route links
+ Route::get('/department_list',[HelperController::class,'GetDepartmentList'])->name('department_list');
 
 
 //Routes route links
@@ -59,6 +61,7 @@ Route::get('/employee_list_data',[EmployeeController::class,'employee_list_data'
 Route::get('/employee/add_employee',[EmployeeController::class,'new_employee_page'])->name('new_employee_page')->middleware('check.permission:Add Employee');
 Route::get('/new_employee_content',[EmployeeController::class,'new_employee_basic_infos_content'])->name('new_employee_content')->middleware('check.permission:Add Employee');
 Route::get('/new_employee_content_p2',[EmployeeController::class,'new_employee_goverment_benefits_content'])->name('new_employee_content_p2')->middleware('check.permission:Add Employee');
+Route::get('/new_employee_content_p3',[EmployeeController::class,'new_employee_work_infos_content'])->name('new_employee_content_p3')->middleware('check.permission:Add Employee');
 Route::post('/save_personal_info',[EmployeeController::class,'storePersonalInfo'])->name('save_personal_info')->middleware('check.permission:Add Employee');
 Route::post('/save_contact_info',[EmployeeController::class,'storeContactInfo'])->name('save_contact_info')->middleware('check.permission:Add Employee');
 Route::post('/save_address_info',[EmployeeController::class,'storeAddressInfo'])->name('save_address_info')->middleware('check.permission:Add Employee');

@@ -1,3 +1,5 @@
+import displayEmployeeWorkInfo from './employee_add_work_info';
+
 function NewEmployee(){
     this.formdata = new FormData;
     this.employee_id = null;
@@ -28,9 +30,14 @@ NewEmployee.prototype.displayView=async function(){
 NewEmployee.prototype.handleNextPage = async function(div){
   const nextBtn = div.querySelector('.jsNextPage');
 
+  
+
   nextBtn.addEventListener('click',(e)=>{
+    displayEmployeeWorkInfo(this.employee_id);
+    return;
+
       if(this.employee_id){
-        alert.normal_alert('alert-warning','Coming soon...');
+        displayEmployeeWorkInfo(this.employee_id);
       }else{
         alert.normal_alert('alert-danger','Please fill up employee personal info!');
       }

@@ -50,23 +50,56 @@ class HelperController extends Controller
         }
     }
 
-    public function GetDepartmentList(){
-        $department_list = DB::table('department_list')
-        ->leftJoin('employee_details','department_list.head_id','=','employee_details.id')
-        ->where('department_list.is_active',1)
-        ->select(
-            'department_list.id',
-            'department_list.department_name',
-            'department_list.head_id',
-            'employee_details.firstname',
-            'employee_details.middlename',
-            'employee_details.lastname'
-        )->get();
+    public function GetDepartmentList()
+    {
+        $data = DB::table('department_list')
+            ->leftJoin('employee_personal_info', 'department_list.head_id', '=', 'employee_personal_info.id')
+            ->leftJoin('team_info','employee_personal_info.id','=','team_info.employee_id')
+            ->where('department_list.is_active', 1)
+            ->select(
+                'department_list.id',
+                'department_list.department_name',
+                'department_list.head_id',
+                'employee_personal_info.firstname',
+                'employee_personal_info.middlename',
+                'employee_personal_info.lastname',
+                'team_info.id as team_id',
+                'team_info.team_name',
+            )
+            ->get();
+    
+        // Map department list
+        $departmentList = $data->map(function ($row) {
+            return [
+                'id' => $row->id,
+                'name' => $row->department_name,
+                'head_id' => $row->head_id,
+            ];
+        })->unique('id')->values();
+    
+        // Map head list
+        $headList = $data->map(function ($row) {
+            return [
+                'id' => $row->head_id,
+                'name' => trim("{$row->firstname} {$row->middlename} {$row->lastname}"),
+                'department_id' => $row->id,
+            ];
+        })->unique('id')->values();
 
-        return $department_list;
-
-
+        $teamList = $data->map(function ($row){
+            return [
+                'id' => $row->team_id,
+                'name' => $row->team_name,
+            ];
+        })->unique('id')->values();
+    
+        return [
+            'department_list' => $departmentList,
+            'head_list' => $headList,
+            'team_list' => $teamList
+        ];
     }
+    
 
    
 }

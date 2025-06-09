@@ -67,6 +67,11 @@ class EmployeeController extends Controller
         return view('Employees.Create_New_Employee_View.employee_add_basic_infos');
     }
 
+    public function new_employee_work_infos_content(){
+        return view('Employees.Create_New_Employee_View.employee_work_info');
+    }
+
+
     public function new_employee_goverment_benefits_content(){
         return view('Employees.Create_New_Employee_View.employee_add_goverment_benefits');
     }
@@ -200,5 +205,7 @@ public function storeContactInfo(Request $request){
                 ], 500);
             }
     }
+
+   
     
 }

@@ -322,7 +322,7 @@ const dropdown = {
       
           dataToShow.forEach(item => {
             const content = `
-              <span class="dropdown-link-li dropdown-link-li-no-grid dropdown-option" data-value="${item.name || item}" data-code="${item.code || 0}">
+              <span class="dropdown-link-li dropdown-link-li-no-grid dropdown-option" data-name="${item.name || item}" data-value="${item.id || item}" data-code="${item.code || 0}">
                 <small>${item.name || item}</small>
               </span>
             `;
@@ -333,7 +333,8 @@ const dropdown = {
           dropdownContainer.querySelectorAll('.dropdown-option').forEach(option => {
             option.addEventListener('click', (e) => {
               e.stopPropagation();
-              inputElement.value = e.currentTarget.dataset.value;
+              inputElement.value = e.currentTarget.dataset.name;
+              inputElement.dataset.value = e.currentTarget.dataset.value;
               inputElement.dataset.code = e.currentTarget.dataset.code;
       
               inputElement.classList.remove('error-empty-input');

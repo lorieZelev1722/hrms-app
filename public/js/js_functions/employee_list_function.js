@@ -17,10 +17,10 @@ EmployeeList.prototype.displayView = async function(){
      
     if(data){
       this.employee_list = data.employee_list;
-      this.department = data.department;
-      this.obj = data.department.map(item => ({
+      this.department = data.departments;
+      this.obj = data.department.department_list.map(item => ({
         id: item.id,
-        name: item.department_name
+        name: item.name
     }));
      
     }

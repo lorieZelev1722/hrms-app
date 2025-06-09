@@ -3,17 +3,17 @@
 @endphp
 
 <div class="add-new-employee-form">
-    <h3>Employee Basic Infos</h3>
-    <div class="add-new-employee-grid-container">
+    <h3>Work Informations</h3>
+    <div class="add-new-employee-grid-container add-new-employee-flex-container">
    
     <!-- input list -->
     <div>
     <div class="add-new-employee-section jsWorkInfo"  data-id="workInfo">
     <span class="section-title">Work Infos</span>
     <span class="add-new-employee-btn employee-disable-btn">Save</span>
-    <div class="add-new-employee-input-wrapper jsDepartmentInput jsDropdown">
+    <div class="add-new-employee-input-wrapper">
         <input type="hidden" name="addedbyID" value="{{$user['id']}}" required>
-        <div class="add-new-employee-input-content">
+        <div class="add-new-employee-input-content jsDepartmentInput jsDropdown">
             <label>Department</label>
             <input type="text" name="department_id" placeholder="Department" required readonly>
         </div>

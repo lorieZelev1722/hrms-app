@@ -250,6 +250,11 @@
     position:relative;
 }
 
+.add-new-employee-flex-container{
+    display: flex !important;
+    flex-direction: column;
+}
+
 .add-new-employee-img-content{
     width:250px;
     height:250px;
