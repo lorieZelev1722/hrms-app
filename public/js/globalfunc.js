@@ -390,7 +390,7 @@ const address_options = {
 
 const nationality_options = {
      country_nationality: async function(parentElement){
-        const data = await fetchGlobal.fetchGetData('https://restcountries.com/v3.1/all');
+        const data = await fetchGlobal.fetchGetData('https://restcountries.com/v3.1/all?fields=name,demonyms');
         const countries = data.map(country => ({
             code: country.name?.common,
             name: country.demonyms?.eng?.m || "Not available"
@@ -398,7 +398,7 @@ const nationality_options = {
         dropdown.show(countries,parentElement);
      },
      country: async function(parentElement){
-        const data = await fetchGlobal.fetchGetData('https://restcountries.com/v3.1/all');
+        const data = await fetchGlobal.fetchGetData('https://restcountries.com/v3.1/all?fields=name,demonyms');
         const countries = data.map(country => ({
             code: country.demonyms?.eng?.m || "Not available",
             name: country.name?.common,
