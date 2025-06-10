@@ -1,7 +1,7 @@
 <div class="add-new-employee-form">
     <span class="add-new-employee-btn employee-disable-btn">Save</span>
     <h3>Employee Goverment Benefits</h3>
-    <div class="add-new-employee-grid-container">
+    <div class="add-new-employee-grid-container add-new-employee-flex-container">
     
     <!-- input list -->
     <div class="add-new-employee-input-wrapper">

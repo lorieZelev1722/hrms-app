@@ -1,3 +1,4 @@
+import displayGovermentBenefits from './employee_add_goverment_benefits';
 
 function EmployeeWorkInfo(employee_id){
   this.employee_id = employee_id;
@@ -23,6 +24,8 @@ EmployeeWorkInfo.prototype.displayView = async function(){
     const div = new DOMParser().parseFromString(view,'text/html').querySelector('.add-new-employee-form');
     
     this.handleDropdown(div);
+    this.handleSaveBtn(div);
+    this.handleNextPage(div);
 
     contentWrapper.appendChild(div);
     loader.stop();
@@ -53,6 +56,55 @@ EmployeeWorkInfo.prototype.handleDropdown = function(div){
         dropdown.show(this.teamList,e.currentTarget);
     });
 }
+
+EmployeeWorkInfo.prototype.handleNextPage = function(div){
+     const nextPageBtn = div.querySelector('.jsNextPage') || '';
+
+     if(nextPageBtn){
+        nextPageBtn.addEventListener('click',()=>{
+            displayGovermentBenefits();
+        });
+     }
+}
+
+EmployeeWorkInfo.prototype.handleSaveBtn = function(div){
+    const saveBtn = div.querySelector('.add-new-employee-btn') || '';
+
+    saveBtn.addEventListener('click',()=>{
+        this.removeErrorMessage(div);
+        this.checkInputValue(div);
+    });
+}
+
+EmployeeWorkInfo.prototype.checkInputValue = function(div){
+    let error = 0;
+   
+    div.querySelectorAll('input').forEach((element)=>{
+            if(element.required && element.value || !element.required && element.value)
+            {
+                this.formdata.append(
+                    element.name,
+                    element.closest('.jsDropdown') ? element.dataset.value : element.value
+                  );
+                  
+                element.classList.remove('error-empty-input');
+            }else if (element.required && !element.value){
+                element.classList.add('error-empty-input');
+                error += 1;
+            }
+        });
+
+}
+
+EmployeeWorkInfo.prototype.removeErrorMessage = function(div){
+    const error_message = div.querySelectorAll('.display-error') || null;
+  
+    if(error_message){
+      error_message.forEach((message)=>{
+          message.remove();
+      });
+    }
+  }
 
 
 export default function displayEmployeeWorkInfo(employee_id){
